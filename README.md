@@ -1,5 +1,10 @@
 # Mail-Template
 
 ### todo
-## validation kontrolünün hazırlanması
-## refactor --> formlar
+
+<ul>
+  <li>validation kontrolünün hazırlanması</li>
+
+  
+  <li>refactor --> formlar</li>
+</ul>
