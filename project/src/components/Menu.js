@@ -16,7 +16,7 @@ const Menu = () => {
       </Link>
       <Link to="/" className="ui green fluid card">
         <div className="content">
-          <div className="header">Load Default templates</div>
+          <div className="header">Load Default Templates</div>
         </div>
       </Link>
       <Link to="/templates/new" className="ui red fluid card">

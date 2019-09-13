@@ -43,7 +43,7 @@ class TemplateForm extends React.Component {
     return (
       <div className=" ui two column centered grid">
         <div className="column">
-          <div className="ui segment">
+          <div className="ui piled raised  segment">
             <h2 style={{ textAlign: "center" }}>Create a Template</h2>
             <form
               className="ui form error"
