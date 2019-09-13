@@ -8,18 +8,18 @@ const Menu = () => {
         onClick={() => {
           console.log("deneme");
         }}
-        className="ui blue fluid card"
+        className="ui blue  card"
       >
         <div className="content">
           <div className="header">New Mail</div>
         </div>
       </Link>
-      <Link to="/" className="ui green fluid card">
+      <Link to="/" className="ui green  card">
         <div className="content">
           <div className="header">Load Default Templates</div>
         </div>
       </Link>
-      <Link to="/templates/new" className="ui red fluid card">
+      <Link to="/templates/new" className="ui red  card">
         <div className="content">
           <div className="header">Create New Template</div>
         </div>
