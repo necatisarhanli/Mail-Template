@@ -87,7 +87,10 @@ class TemplateList extends React.Component {
     });
   }
   render() {
-    if (this.props.templates.length === 0) {
+    if (
+      this.props.templates.length === 0 ||
+      (this.props.templates.length === 3 && !this.props.showDefault)
+    ) {
       return (
         <div>
           <div className="ui icon message">
