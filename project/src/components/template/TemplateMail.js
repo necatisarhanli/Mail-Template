@@ -21,12 +21,12 @@ class TemplateMail extends React.Component {
       );
     }
   }
-  renderInput = ({ input = {}, label, meta }) => {
+  renderInput = ({ input = {}, label, meta, placeholder }) => {
     const classNameError = `field ${meta.error && meta.touched ? "error" : ""}`; // field ı kırmızıya boyamak
     return (
       <div className={classNameError}>
         <label className="ui label">{label}</label>
-        <input {...input} autoComplete="off" />
+        <input placeholder={placeholder} {...input} autoComplete="off" />
         {this.renderError(meta)}
       </div>
     ); // input objesinin tamamını compenenetin icine esliyoruz example: onChange = fromPorps.input.onChange gibi
@@ -71,11 +71,13 @@ class TemplateMail extends React.Component {
                 name="reciver"
                 component={this.renderInput}
                 label="Reciver"
+                placeholder="to : example@xxxx.com"
               />
               <Field
                 name="subject"
                 component={this.renderInput}
                 label="Subject"
+                placeholder="Title"
               />
 
               <Field

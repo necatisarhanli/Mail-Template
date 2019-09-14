@@ -1,5 +1,7 @@
 const mongoose = require("mongoose"); // import mongoose
 
+// mail schema --unnecessary for now  . Maybe in the long run we might want to save our mails on db
+
 const mailSchema = mongoose.Schema({
   from: {
     type: String,

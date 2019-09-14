@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Menu = () => {
+import { connect } from "react-redux";
+import { defaultTemplate } from "../actions";
+const Menu = (props) => {
   return (
     <div className="ui three cards">
       <Link
@@ -14,9 +16,17 @@ const Menu = () => {
           <div className="header">New Mail</div>
         </div>
       </Link>
-      <Link to="/" className="ui green  card">
+      <Link
+        to="/"
+        onClick={() => {
+          props.defaultTemplate(!props.isDefault);
+        }}
+        className="ui green  card"
+      >
         <div className="content">
-          <div className="header">Load Default Templates</div>
+          <div className="header">
+            {`${props.isDefault ? "Hide " : "Show "}`} Default Templates
+          </div>
         </div>
       </Link>
       <Link to="/templates/new" className="ui red  card">
@@ -28,4 +38,13 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+const mapStateToProps = (state) => {
+  return {
+    isDefault: state.default.isDefault
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { defaultTemplate }
+)(Menu);

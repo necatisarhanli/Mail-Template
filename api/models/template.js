@@ -1,5 +1,7 @@
 const mongoose = require("mongoose"); // import mongoose
 
+//template schema
+
 const TemplateSchema = mongoose.Schema({
   templateName: {
     type: String,

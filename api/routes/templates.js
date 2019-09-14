@@ -3,6 +3,8 @@ const router = express.Router();
 const Template = require("../models/template");
 
 //GETTING ALL THE POSTS
+
+//Fetcing all the templates
 router.get("/", async (req, res) => {
   try {
     console.log("fetching all");
@@ -13,7 +15,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//addıng new one
+//creating new template
 router.post("/", async (req, res) => {
   const template = new Template({
     templateName: req.body.templateName,
@@ -29,7 +31,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-//DELETING
+//deleting single template
 router.delete("/:tempId", async (req, res) => {
   try {
     console.log("deleting");
@@ -42,7 +44,7 @@ router.delete("/:tempId", async (req, res) => {
   }
 });
 
-//PATCHIN
+//updating single template
 router.patch("/:tempId", async (req, res) => {
   try {
     const updatedTemplate = await Template.updateOne(
@@ -53,7 +55,7 @@ router.patch("/:tempId", async (req, res) => {
           subject: req.body.subject,
           content: req.body.content,
           fav: req.body.fav,
-          default: req.off.default
+          default: req.body.default
         }
       }
     ); // remove function is deprecated so i used deleteOne
@@ -66,7 +68,7 @@ router.patch("/:tempId", async (req, res) => {
   }
 });
 
-//fetch one
+//fetch single template
 router.get("/:tempId", async (req, res) => {
   try {
     console.log("fetching one");
@@ -78,8 +80,3 @@ router.get("/:tempId", async (req, res) => {
 });
 
 module.exports = router;
-/*
-//GETING SINGLE POST BY ID
-
-
-*/

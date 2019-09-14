@@ -5,7 +5,8 @@ import {
   FETCH_SINGLE_TEMPLATE,
   FETCH_ALL_TEMPLATES,
   DELETE_TEMPLATE,
-  EDIT_TEMPLATE
+  EDIT_TEMPLATE,
+  LOAD_DEFAULT_TEMPLATES
 } from "../actions/types";
 
 export default (state = {}, action) => {

@@ -19,10 +19,16 @@ class TemplateList extends React.Component {
 
   renderCard() {
     return this.props.templates.map((template) => {
+      console.log(this.props.showDefault);
+      if (!this.props.showDefault && template.default) {
+        return null;
+      }
       return (
         <div
           key={template._id}
-          className={`card ${template.fav ? "yellow " : "blue "}`}
+          className={`card ${template.default === true ? "green " : " "}${
+            template.fav ? "yellow " : " "
+          }  ${!template.fav && !template.default ? "blue " : " "}`}
         >
           <div className="content">
             <i
@@ -34,7 +40,7 @@ class TemplateList extends React.Component {
               }}
               className={`right floated ${
                 template.fav ? "yellow " : ""
-              } star icon`}
+              } star icon  ${template.default ? "invisible " : " "}`}
             ></i>
             <div className="header">{template.templateName}</div>
             <div className="description">{template.subject}</div>
@@ -48,7 +54,9 @@ class TemplateList extends React.Component {
           </Link>
           <Link
             to={`/templates/edit/${template._id}`}
-            className="ui bottom attached button"
+            className={`ui bottom attached  ${
+              template.default === true ? "disabled " : " "
+            } button`}
           >
             <i className="edit icon"></i>
             Edit Template
@@ -57,7 +65,9 @@ class TemplateList extends React.Component {
             style={{ fontWeight: "700" }}
             className={`ui ${
               this.state.idToDelete === template._id ? "basic  " : ""
-            }bottom attached button`}
+            } ${
+              template.default === true ? "disabled " : " "
+            } bottom attached button`}
             onClick={() => {
               if (this.state.idToDelete === template._id) {
                 this.props.deleteTemplate(template._id);
@@ -100,14 +110,15 @@ class TemplateList extends React.Component {
   }
 }
 
-const matStateToProps = (state = {}) => {
+const mapStateToProps = (state = {}) => {
   return {
     templates: Object.values(state.templates),
-    mail: state.mail
+    mail: state.mail,
+    showDefault: state.default.isDefault
   };
 };
 
 export default connect(
-  matStateToProps,
+  mapStateToProps,
   { fetchAllTemplates, useTemplate, deleteTemplate, editTemplate }
 )(TemplateList);

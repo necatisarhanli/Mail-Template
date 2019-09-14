@@ -9,6 +9,8 @@ import TemplateEdit from "./template/TemplateEdit";
 import TemplateMail from "./template/TemplateMail";
 class App extends React.Component {
   render() {
+    // whatever in swich tag will be replaced (render) due to the route changes
+    // we keep header tag outside so it will be always on screen
     return (
       <div className="ui container ">
         <Router history={history}>

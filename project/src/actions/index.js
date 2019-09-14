@@ -6,7 +6,8 @@ import {
   FETCH_SINGLE_TEMPLATE,
   USE_TEMPLATE,
   DELETE_TEMPLATE,
-  EDIT_TEMPLATE
+  EDIT_TEMPLATE,
+  DEFAULT_TEMPLATES
 } from "./types";
 
 export const createTemplate = (formValues) => {
@@ -19,6 +20,13 @@ export const createTemplate = (formValues) => {
     //do some programmatic navigation to
     //get the user back to the root route
     history.push("/");
+  };
+};
+
+export const defaultTemplate = (show) => {
+  return {
+    type: DEFAULT_TEMPLATES,
+    payload: show
   };
 };
 

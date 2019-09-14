@@ -4,30 +4,30 @@ const router = express.Router();
 const Mail = require("../models/mail");
 
 router.post("/", async (req, res) => {
-  const newMail = new Mail({
-    from: "mailexample09@gmail.com",
-    to: "necatisarhanli@gmail.com",
-    subject: req.body.subject,
-    text: req.body.content
-  });
-
   try {
+    //config
     var transfer = nodemailer.createTransport({
-      service: "gmail", //mail servisi
+      service: "gmail", //mail service (hotmail,gmail,yahoo)
+      // some services doesn't allow you to use their service on your apps
+      // they concider your app as  a low secured app .
+      // we need to give permission to mail-service
       auth: {
-        //gönderen bigileri
+        //auth details
         user: "mailexample09@gmail.com",
         pass: "09examplemail"
       }
     });
-
+    /*
+//req body
     var mailContent = {
-      from: "mailexample09@gmail.com", //bunuda dene transfer.auth.user
+      from: "mailexample09@gmail.com", //
       to: "necatisarhanli@gmail.com",
       subject: "ddddd",
       text: "eeeee"
     };
+*/
 
+    // this is where we actualy send the mail
     transfer.sendMail(req.body, function(err) {
       if (err) {
         console.log(err);
