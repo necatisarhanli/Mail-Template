@@ -91,6 +91,9 @@ class TemplateList extends React.Component {
       this.props.templates.length === 0 ||
       (this.props.templates.length === 3 && !this.props.showDefault)
     ) {
+      this.props.templates.sort((a, b) => {
+        return a.fav || b.fav;
+      });
       return (
         <div>
           <div className="ui icon message">
@@ -98,7 +101,11 @@ class TemplateList extends React.Component {
             <div className="content">
               <div className="header">Just one second</div>
               <p>
-                Create your first Template by clicking "Create New Template"
+                Create your first Template by clicking " Create New Template ".
+              </p>
+              <p>
+                By clicking " Show Default Templates " you can see templates we
+                created for you.
               </p>
             </div>
           </div>

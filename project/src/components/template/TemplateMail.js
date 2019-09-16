@@ -15,14 +15,14 @@ class TemplateMail extends React.Component {
     //check error
     if (touched && error) {
       return (
-        <div className="ui error message">
+        <div className="ui error message mini">
           <div className="header">{error}</div>
         </div>
       );
     }
   }
   renderInput = ({ input = {}, label, meta, placeholder }) => {
-    const classNameError = `field ${meta.error && meta.touched ? "error" : ""}`; // field ı kırmızıya boyamak
+    const classNameError = "field"; // field ı kırmızıya boyamak
     return (
       <div className={classNameError}>
         <label className="ui label">{label}</label>
@@ -33,7 +33,7 @@ class TemplateMail extends React.Component {
   };
 
   renderInputArea = ({ input, label, meta }) => {
-    const classNameError = `field ${meta.error && meta.touched ? "error" : ""}`; // field ı kırmızıya boyamak
+    const classNameError = "field"; // field ı kırmızıya boyamak
     return (
       <div className={classNameError}>
         <label className="ui label">{label}</label>
@@ -97,13 +97,33 @@ class TemplateMail extends React.Component {
   }
 }
 
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.title) {
-    errors.title = " You must enter a title";
+
+  if (!formValues.reciver) {
+    errors.reciver = " You must enter a reciver";
   }
-  if (!formValues.description) {
-    errors.description = "You must enter a description";
+  if (formValues.reciver) {
+    if (!validateEmail(formValues.reciver)) {
+      errors.reciver = " You must enter valid reciver";
+    }
+  }
+  if (!formValues.subject) {
+    errors.subject = " You must enter a subject";
+  }
+  if (formValues.subject) {
+    if (formValues.subject.length > 20) {
+      errors.subject = "subject name can't be longer than 20";
+    }
+  }
+
+  if (!formValues.content) {
+    errors.content = " You must enter a message";
   }
   return errors;
 };

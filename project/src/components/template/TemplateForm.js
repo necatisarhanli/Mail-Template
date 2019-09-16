@@ -5,7 +5,7 @@ class TemplateForm extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
-        <div className="ui error message">
+        <div className="ui error mini message">
           <div className="header">{error}</div>
         </div>
       );
@@ -13,7 +13,7 @@ class TemplateForm extends React.Component {
   }
 
   renderInput = ({ input, label, meta }) => {
-    const classNameError = `field ${meta.error && meta.touched ? "error" : ""}`; // field ı kırmızıya boyamak
+    const classNameError = "field "; // field ı kırmızıya boyamak
     return (
       <div className={classNameError}>
         <label className="ui label">{label}</label>
@@ -24,7 +24,7 @@ class TemplateForm extends React.Component {
   };
 
   renderInputArea = ({ input, label, meta }) => {
-    const classNameError = `field ${meta.error && meta.touched ? "error" : ""}`; // field ı kırmızıya boyamak
+    const classNameError = "field"; // field ı kırmızıya boyamak
     return (
       <div className={classNameError}>
         <label className="ui label">{label}</label>
@@ -36,6 +36,7 @@ class TemplateForm extends React.Component {
   };
 
   onSubmit = (formValues) => {
+    console.log(formValues);
     this.props.onSubmit(formValues);
   };
 
@@ -84,11 +85,25 @@ class TemplateForm extends React.Component {
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.title) {
-    errors.title = " You must enter a title";
+  if (!formValues.subject) {
+    errors.subject = " You must enter a subject";
   }
-  if (!formValues.description) {
-    errors.description = "You must enter a description";
+  if (formValues.subject) {
+    if (formValues.subject.length > 20) {
+      errors.subject = "subject name can't be longer than 20";
+    }
+  }
+  if (!formValues.templateName) {
+    errors.templateName = "You must enter a Template name";
+  }
+
+  if (formValues.templateName) {
+    if (formValues.templateName.length > 20) {
+      errors.templateName = " Template name can't be longer than 20 ";
+    }
+  }
+  if (!formValues.content) {
+    errors.content = " You must enter a message";
   }
   return errors;
 };

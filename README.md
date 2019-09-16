@@ -1,15 +1,17 @@
 # Mail-Template
 
-### todo
+### todo's
 
 <ul>
-  <li>validation kontrolünün hazırlanması</li>
+  <li> need refactor on forms</li>
+    <li> better sorting on templatelist </li>
 
-  
-  <li>refactor --> formlar</li>
 </ul>
 
 #### dependecies Api
+
+<p> npm install body-parser cors dotenv express mongoose nodemon nodemailer</p>
+
 <ul>
     <li>body-parser: "^1.19.0"</li>
     <li>cors: "^2.8.5"</li>
@@ -22,6 +24,8 @@
 
 
 #### dependecies React
+
+<p>npm instal axios history react react-dom react-redux react-router-dom react-scripts redux redux-form redux-thunk</p>
 <ul>
    <li> axios: "^0.19.0"</li>
    <li> history: "^4.9.0"</li>
