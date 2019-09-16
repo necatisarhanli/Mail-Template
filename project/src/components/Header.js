@@ -5,7 +5,7 @@ const Header = () => {
     <div className="ui secondary pointing menu ">
       <Link to="/" className="item">
         <i aria-hidden="true" className="paper plane large icon"></i>
-        Mail Templates
+        <p style={{ fontStyle: "oblique" }}>Mail Templates</p>
       </Link>
     </div>
   );
