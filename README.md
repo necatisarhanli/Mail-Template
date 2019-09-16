@@ -10,7 +10,7 @@
 
 #### dependecies Api
 
-<p> npm install body-parser cors dotenv express mongoose nodemon nodemailer</p>
+<p> -npm install body-parser cors dotenv express mongoose nodemon nodemailer</p>
 
 <ul>
     <li>body-parser: "^1.19.0"</li>
@@ -25,7 +25,7 @@
 
 #### dependecies React
 
-<p>npm instal axios history react react-dom react-redux react-router-dom react-scripts redux redux-form redux-thunk</p>
+<p> -npm install axios history react react-dom react-redux react-router-dom react-scripts redux redux-form redux-thunk</p>
 <ul>
    <li> axios: "^0.19.0"</li>
    <li> history: "^4.9.0"</li>
