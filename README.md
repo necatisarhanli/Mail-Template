@@ -17,6 +17,7 @@
     <li>express: "^4.17.1"</li>
     <li>mongoose: "^5.7.0"</li>
     <li>nodemon: "^1.19.2"</li>
+    <li>nodemailer: "*.*.*"</li>
 </ul>
 
 
