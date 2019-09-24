@@ -14,7 +14,7 @@
 <ul>
   <li> new text editor added </li>
   <li> docker files added </li>
-  <li> better sorting depends of template </li>
+  <li> better sorting depends on template type </li>
   <li> bunch of new comment lines </li>
   <li> new cards for templates (easy to read) </li>
   
