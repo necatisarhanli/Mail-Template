@@ -39,7 +39,6 @@ class TemplateForm extends React.Component {
           onClick={() => {
             this.setState({ preview: !this.state.preview });
             this.forceUpdate();
-            console.log(this.state.preview);
           }}
           className="ui button white"
           style={{ margin: "10px", float: "left" }}
@@ -62,7 +61,6 @@ class TemplateForm extends React.Component {
           onClick={() => {
             this.setState({ preview: !this.state.preview });
             this.forceUpdate();
-            console.log(this.state.preview);
           }}
           className="ui button white"
           style={{ margin: "10px", float: "left" }}
@@ -76,12 +74,10 @@ class TemplateForm extends React.Component {
   };
 
   onSubmit = (formValues) => {
-    console.log(formValues);
     this.props.onSubmit(formValues);
   };
 
   render() {
-    console.log("newrender");
     return (
       <div className=" ui two column centered grid">
         <div className="column">
