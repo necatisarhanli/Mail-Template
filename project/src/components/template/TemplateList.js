@@ -10,15 +10,15 @@ import { Link } from "react-router-dom";
 class TemplateList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { idToDelete: null };
+    this.state = { idToDelete: null, big: false };
   }
 
   componentDidMount() {
     this.props.fetchAllTemplates();
   }
 
-  renderCard() {
-    return this.props.templates.map((template) => {
+  renderCard(list) {
+    return list.map((template) => {
       console.log(this.props.showDefault);
       if (!this.props.showDefault && template.default) {
         return null;
@@ -45,42 +45,55 @@ class TemplateList extends React.Component {
             <div className="header">{template.templateName}</div>
             <div className="description">{template.subject}</div>
           </div>
-          <Link
-            to={`/templates/use/${template._id}`}
-            className="ui bottom attached button"
-          >
-            <i className="add icon"></i>
-            Use Template
-          </Link>
-          <Link
-            to={`/templates/edit/${template._id}`}
-            className={`ui bottom attached  ${
-              template.default === true ? "disabled " : " "
-            } button`}
-          >
-            <i className="edit icon"></i>
-            Edit Template
-          </Link>
-          <div
-            style={{ fontWeight: "700" }}
-            className={`ui ${
-              this.state.idToDelete === template._id ? "basic  " : ""
-            } ${
-              template.default === true ? "disabled " : " "
-            } bottom attached button`}
-            onClick={() => {
-              if (this.state.idToDelete === template._id) {
-                this.props.deleteTemplate(template._id);
-                this.setState({ idToDelete: null });
-              } else {
-                this.setState({ idToDelete: template._id });
-              }
-            }}
-          >
-            <i className="remove icon"></i>
-            {this.state.idToDelete === template._id
-              ? "Click Again to Delete"
-              : "Delete Template"}
+          <div className="extra content">
+            <div className=" ui icon buttons ">
+              <i className="left floated inverted button ">{template.date}</i>
+            </div>
+            <div className="ui icon buttons right floated">
+              <Link
+                to={`/templates/use/${template._id}`}
+                className="ui icon  button"
+                data-variation="mini"
+                data-tooltip="Use"
+              >
+                <i className="clipboard icon"></i>
+              </Link>
+              <Link
+                data-tooltip="Edit"
+                to={`/templates/edit/${template._id}`}
+                className={`ui icon   ${
+                  template.default === true ? "disabled " : " "
+                } button`}
+              >
+                <i className="edit icon"></i>
+              </Link>
+              <div
+                data-tooltip={
+                  this.state.idToDelete === template._id
+                    ? "Are you sure ?"
+                    : "Delete "
+                }
+                className={`ui ${
+                  template.default === true ? "disabled " : " "
+                } bottom button`}
+                onClick={() => {
+                  if (this.state.idToDelete === template._id) {
+                    this.props.deleteTemplate(template._id);
+                    this.setState({ idToDelete: null });
+                  } else {
+                    this.setState({ idToDelete: template._id });
+                  }
+                }}
+              >
+                <i
+                  className={`${
+                    this.state.idToDelete === template._id
+                      ? "orange remove "
+                      : "remove "
+                  }icon`}
+                ></i>
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -114,7 +127,16 @@ class TemplateList extends React.Component {
     }
     return (
       <div>
-        <div className="ui four cards">{this.renderCard()}</div>
+        <div className="ui four cards">
+          {this.renderCard(
+            // sorting done here by comparing if the template fav'd or not
+            this.props.templates.sort((a, b) => {
+              if (a.fav === true) return -1;
+              else if (b.fav === true) return 1;
+              else return 0;
+            })
+          )}
+        </div>
       </div>
     );
   }

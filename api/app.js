@@ -25,11 +25,13 @@ app.get("/", (req, res) => {
 });
 
 // connection to mangoDB
+
 mongoose.connect(
-  "mongodb+srv://Slayzen:biohazard@cluster-mq9jx.mongodb.net/test?retryWrites=true&w=majority", //mangodan gelend id icinde acc ve pass var
+  //"mongodb+srv://Slayzen:biohazard@cluster-mq9jx.mongodb.net/test?retryWrites=true&w=majority", //mangodan gelend id icinde acc ve pass var
+  "mongodb://mongo:27017/docker-node-mongo",
   { useNewUrlParser: true, useUnifiedTopology: true }, // mangonun istedigigi bir prop
   () => {
-    console.log("connected to db");
+    console.log("connected to new db");
     console.log("ready.."); // callback function baglandıgımızı görnek icin
   }
 );

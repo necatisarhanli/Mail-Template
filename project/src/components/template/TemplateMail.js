@@ -4,11 +4,11 @@ import { sendMail } from "../../actions";
 import { connect } from "react-redux";
 import history from "../../history";
 import { Link } from "react-router-dom";
+import Wysiwyg from "../Wysiwyg";
 class TemplateMail extends React.Component {
-  //buraya meta yı gönderdik
   constructor(props) {
     super(props);
-    this.state = { a: null };
+    this.state = { preview: true };
   }
 
   renderError({ error, touched }) {
@@ -31,26 +31,58 @@ class TemplateMail extends React.Component {
       </div>
     ); // input objesinin tamamını compenenetin icine esliyoruz example: onChange = fromPorps.input.onChange gibi
   };
-
   renderInputArea = ({ input, label, meta }) => {
     const classNameError = "field"; // field ı kırmızıya boyamak
+    ///
     return (
       <div className={classNameError}>
         <label className="ui label">{label}</label>
-
-        <textarea {...input}></textarea>
+        <div
+          onClick={() => {
+            this.setState({ preview: !this.state.preview });
+            this.forceUpdate();
+            console.log(this.state.preview);
+          }}
+          className="ui button white"
+          style={{ margin: "10px", float: "left" }}
+        >
+          preview
+        </div>
+        <Wysiwyg {...input} i18n={{}} helper={input}></Wysiwyg>
         {this.renderError(meta)}
       </div>
-    ); // input objesinin tamamını compenenetin icine esliyoruz example: onChange = fromPorps.input.onChange gibi
+    );
   };
 
+  renderInputAreaHtml = ({ input, label, meta }) => {
+    const classNameError = "field"; // field ı kırmızıya boyamak
+    ///
+    return (
+      <div className={classNameError}>
+        <label className="ui label">{label}</label>
+        <div
+          onClick={() => {
+            this.setState({ preview: !this.state.preview });
+            this.forceUpdate();
+            console.log(this.state.preview);
+          }}
+          className="ui button white"
+          style={{ margin: "10px", float: "left" }}
+        >
+          original
+        </div>
+        <textarea className="disable" {...input}></textarea>
+        {this.renderError(meta)}
+      </div>
+    );
+  };
   onSubmit = (formValues) => {
     console.log(formValues);
     const mail = {
       from: "mailexample09@gmail.com",
       to: formValues.reciver,
       subject: formValues.subject,
-      text: formValues.content
+      html: formValues.content
     };
     this.props.sendMail(mail);
     history.push("/");
@@ -82,11 +114,15 @@ class TemplateMail extends React.Component {
 
               <Field
                 name="content"
-                component={this.renderInputArea}
+                component={
+                  this.state.preview
+                    ? this.renderInputArea
+                    : this.renderInputAreaHtml
+                }
                 label="Content"
               />
-              <button className="ui button primary">Submit</button>
-              <Link to="/" className="ui button red">
+              <button className="ui button facebook">Submit</button>
+              <Link to="/" className="ui button grey">
                 Back
               </Link>
             </form>
@@ -118,8 +154,8 @@ const validate = (formValues) => {
     errors.subject = " You must enter a subject";
   }
   if (formValues.subject) {
-    if (formValues.subject.length > 20) {
-      errors.subject = "subject name can't be longer than 20";
+    if (formValues.subject.length > 30) {
+      errors.subject = "subject name can't be longer than 30";
     }
   }
 

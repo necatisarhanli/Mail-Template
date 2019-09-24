@@ -20,7 +20,8 @@ router.post("/", async (req, res) => {
   const template = new Template({
     templateName: req.body.templateName,
     subject: req.body.subject,
-    content: req.body.content
+    content: req.body.content,
+    date: req.body.date
   });
   try {
     console.log("creating");
@@ -55,7 +56,8 @@ router.patch("/:tempId", async (req, res) => {
           subject: req.body.subject,
           content: req.body.content,
           fav: req.body.fav,
-          default: req.body.default
+          default: req.body.default,
+          date: req.body.date
         }
       }
     ); // remove function is deprecated so i used deleteOne

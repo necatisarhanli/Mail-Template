@@ -15,6 +15,10 @@ const TemplateSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  date: {
+    type: String,
+    required: true
+  },
   fav: {
     type: Boolean
   },

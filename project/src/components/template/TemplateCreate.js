@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createTemplate } from "../../actions";
-import TemplateForm from "./TemplateForm";
 
+import TemplateForm from "./TemplateForm";
 class TemplateCreate extends React.Component {
   onSubmit = (formValues) => {
     this.props.createTemplate(formValues);

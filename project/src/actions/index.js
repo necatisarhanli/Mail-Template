@@ -14,7 +14,10 @@ export const createTemplate = (formValues) => {
   return async (dispatch) => {
     // dispatch aksiyon ve getState aksiyon olmalarında kaynaklı özllikler
     // getState sayesinde o anki state in icindekilere erisebiliyoruz
-    const response = await templates.post("/templates", { ...formValues });
+    const response = await templates.post("/templates", {
+      ...formValues,
+      date: new Date().toLocaleDateString("tr-TR")
+    });
 
     dispatch({ type: CREATE_TEMPLATE, payload: response.data });
     //do some programmatic navigation to
@@ -53,7 +56,10 @@ export const fetchSingleTemplate = (id) => {
 
 export const editTemplate = (id, newValues) => {
   return async (dispatch) => {
-    const response = await templates.patch(`/templates/${id}`, newValues);
+    const response = await templates.patch(`/templates/${id}`, {
+      ...newValues,
+      date: new Date().toLocaleDateString("tr-TR")
+    });
     dispatch({ type: EDIT_TEMPLATE, payload: response.data });
     history.push("/");
   };

@@ -18,15 +18,15 @@ router.post("/", async (req, res) => {
       }
     });
     /*
-//req body
+    //req body
     var mailContent = {
       from: "mailexample09@gmail.com", //
       to: "necatisarhanli@gmail.com",
       subject: "ddddd",
-      text: "eeeee"
+      text: "text",
+      html: "<h1>deneme html</h1>"
     };
 */
-
     // this is where we actualy send the mail
     transfer.sendMail(req.body, function(err) {
       if (err) {

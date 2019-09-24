@@ -1,7 +1,13 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
+import Wysiwyg from "../Wysiwyg";
 class TemplateForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { preview: true };
+  }
+
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -25,11 +31,45 @@ class TemplateForm extends React.Component {
 
   renderInputArea = ({ input, label, meta }) => {
     const classNameError = "field"; // field ı kırmızıya boyamak
+    ///
     return (
       <div className={classNameError}>
         <label className="ui label">{label}</label>
+        <div
+          onClick={() => {
+            this.setState({ preview: !this.state.preview });
+            this.forceUpdate();
+            console.log(this.state.preview);
+          }}
+          className="ui button white"
+          style={{ margin: "10px", float: "left" }}
+        >
+          preview
+        </div>
+        <Wysiwyg {...input} i18n={{}} helper={input}></Wysiwyg>
+        {this.renderError(meta)}
+      </div>
+    );
+  };
 
-        <textarea {...input}></textarea>
+  renderInputAreaHtml = ({ input, label, meta }) => {
+    const classNameError = "field"; // field ı kırmızıya boyamak
+    ///
+    return (
+      <div className={classNameError}>
+        <label className="ui label">{label}</label>
+        <div
+          onClick={() => {
+            this.setState({ preview: !this.state.preview });
+            this.forceUpdate();
+            console.log(this.state.preview);
+          }}
+          className="ui button white"
+          style={{ margin: "10px", float: "left" }}
+        >
+          original
+        </div>
+        <textarea className="disable" {...input}></textarea>
         {this.renderError(meta)}
       </div>
     );
@@ -41,6 +81,7 @@ class TemplateForm extends React.Component {
   };
 
   render() {
+    console.log("newrender");
     return (
       <div className=" ui two column centered grid">
         <div className="column">
@@ -60,19 +101,25 @@ class TemplateForm extends React.Component {
                 component={this.renderInput}
                 label="Subject"
               />
+
               <Field
                 name="content"
-                component={this.renderInputArea}
+                component={
+                  this.state.preview
+                    ? this.renderInputArea
+                    : this.renderInputAreaHtml
+                }
                 label="Content"
               />
 
               <button
-                className="ui button primary"
+                className="ui google plus button"
                 style={{ marginTop: "10px" }}
               >
                 Submit
               </button>
-              <Link to="/" className="ui button red">
+
+              <Link to="/" className="ui button grey">
                 Back
               </Link>
             </form>
