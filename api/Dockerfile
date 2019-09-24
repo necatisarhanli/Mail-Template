@@ -4,7 +4,6 @@ WORKDIR /usr/src/api
 
 COPY package.json ./
 
-RUN npm install nodemailer
 RUN npm install
 
 COPY . .

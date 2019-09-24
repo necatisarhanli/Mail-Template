@@ -31,9 +31,10 @@ mongoose.connect(
   "mongodb://mongo:27017/docker-node-mongo",
   { useNewUrlParser: true, useUnifiedTopology: true }, // mangonun istedigigi bir prop
   () => {
-    console.log("connected to new db");
+    console.log("connected to docker db");
     console.log("ready.."); // callback function baglandıgımızı görnek icin
   }
 );
+
 //listen port - 300X
 app.listen(3003);

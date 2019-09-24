@@ -117,8 +117,9 @@ class TemplateList extends React.Component {
                 Create your first Template by clicking " Create New Template ".
               </p>
               <p>
-                By clicking " Show Default Templates " you can see templates we
-                created for you.
+                {this.props.showDefault === false
+                  ? "By clicking 'Show Default Templates ' you can see templates we created for you."
+                  : "Sorry there is no default template at the moment"}
               </p>
             </div>
           </div>
