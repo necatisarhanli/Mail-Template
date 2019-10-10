@@ -11,7 +11,7 @@ class TemplateCreate extends React.Component {
   render() {
     return (
       <div>
-        <TemplateForm onSubmit={this.onSubmit} />
+        <TemplateForm onSubmit={this.onSubmit} name="Create a Template" />
       </div>
     );
   }

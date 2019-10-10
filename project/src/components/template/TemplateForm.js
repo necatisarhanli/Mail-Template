@@ -82,7 +82,7 @@ class TemplateForm extends React.Component {
       <div className=" ui two column centered grid">
         <div className="column">
           <div className="ui piled raised  segment">
-            <h2 style={{ textAlign: "center" }}>Create a Template</h2>
+            <h2 style={{ textAlign: "center" }}>{this.props.name}</h2>
             <form
               className="ui form error"
               onSubmit={this.props.handleSubmit(this.onSubmit)}

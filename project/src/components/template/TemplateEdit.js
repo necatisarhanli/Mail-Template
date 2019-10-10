@@ -18,8 +18,8 @@ class TemplateEdit extends React.Component {
     }
     return (
       <div>
-        <h3>Edit A Template</h3>
         <TemplateForm
+          name="Edit A Template"
           onSubmit={this.onSubmit}
           initialValues={_.pick(
             this.props.template,
