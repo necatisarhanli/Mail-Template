@@ -1,6 +1,6 @@
-import React from "react";
-import TemplateList from "./TemplateList";
-import Menu from "../Menu";
+import React from 'react'
+import TemplateList from './TemplateList'
+import Menu from '../global/menu'
 class TemplateMain extends React.Component {
   render() {
     return (
@@ -14,8 +14,8 @@ class TemplateMain extends React.Component {
           <TemplateList />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default TemplateMain;
+export default TemplateMain

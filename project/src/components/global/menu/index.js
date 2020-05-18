@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { defaultTemplate } from "../actions";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { defaultTemplate } from '../../../actions'
 const Menu = (props) => {
   return (
     <div className="ui three cards">
       <Link
         to="/templates/use"
         onClick={() => {
-          console.log("deneme");
+          console.log('deneme')
         }}
         className="ui blue  card"
       >
@@ -19,13 +19,13 @@ const Menu = (props) => {
       <Link
         to="/"
         onClick={() => {
-          props.defaultTemplate(!props.isDefault);
+          props.defaultTemplate(!props.isDefault)
         }}
-        className="ui green  card"
+        className="ui green card"
       >
         <div className="content">
           <div className="header">
-            {`${props.isDefault ? "Hide " : "Show "}`} Default Templates
+            {`${props.isDefault ? 'Hide ' : 'Show '}`} Default Templates
           </div>
         </div>
       </Link>
@@ -35,16 +35,13 @@ const Menu = (props) => {
         </div>
       </Link>
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
-    isDefault: state.default.isDefault
-  };
-};
+    isDefault: state.default.isDefault,
+  }
+}
 
-export default connect(
-  mapStateToProps,
-  { defaultTemplate }
-)(Menu);
+export default connect(mapStateToProps, { defaultTemplate })(Menu)
